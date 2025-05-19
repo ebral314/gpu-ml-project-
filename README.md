@@ -23,3 +23,45 @@ Bu projede, RAPIDS AI kütüphanesi (cuML) kullanılarak GPU üzerinde KMeans al
 
 ## 📁 Klasör Yapısı
 
+README.md dosyası eklendi
+
+import cupy as cp
+import pandas as pd
+
+rows = 1_000_000
+cols = 10
+
+# GPU'da rastgele veri üret
+data_gpu = cp.random.rand(rows, cols)
+
+# CPU'ya çevir
+data_cpu = cp.asnumpy(data_gpu)
+
+# DataFrame oluştur
+df = pd.DataFrame(data_cpu, columns=[f"feature_{i}" for i in range(cols)])
+
+# CSV olarak kaydet
+df.to_csv("data/synthetic_data.csv", index=False)
+
+print("Veri başarıyla oluşturuldu ve kaydedildi!")
+
+import cupy as cp
+import pandas as pd
+import os
+
+# Klasör var mı kontrol et, yoksa oluştur
+os.makedirs("data", exist_ok=True)
+
+# 1 milyon satır x 10 sütunluk rastgele veri (10 MB civarı)
+rows = 1_000_000
+cols = 10
+
+data_gpu = cp.random.rand(rows, cols)
+data_cpu = cp.asnumpy(data_gpu)
+
+df = pd.DataFrame(data_cpu, columns=[f"feature_{i}" for i in range(cols)])
+df.to_csv("data/synthetic_data.csv", index=False)
+
+print("✅ synthetic_data.csv başarıyla oluşturuldu ve kaydedildi!")
+
+README eklendi, GPU destekli veri oluşturma scripti taşındı.
