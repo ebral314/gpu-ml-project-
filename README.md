@@ -15,7 +15,7 @@ Bu projede, RAPIDS AI kütüphanesi (cuML) kullanılarak GPU üzerinde KMeans al
 
 ## 🧠 Proje Adımları
 
-1. **Veri Üretimi:** CuPy kullanılarak 10 sütun ve 1.000.000 satırdan oluşan 10 MB'lık sahte veri üretildi.
+1. **Veri Üretimi:** CuPy kullanılarak 10 sütun ve 500.000 satırdan oluşan 10 MB'lık sahte veri üretildi.
 2. **Veri Kaydı:** Üretilen veri `.csv` formatında `data/` klasörüne kaydedildi.
 3. **Kümeleme:** cuML içindeki `KMeans` algoritması ile 3 küme oluşturuldu.
 4. **Görselleştirme:** Sonuçlar matplotlib ile görselleştirildi.
@@ -28,7 +28,7 @@ README.md dosyası eklendi
 import cupy as cp
 import pandas as pd
 
-rows = 1_000_000
+rows = 500_000
 cols = 10
 
 # GPU'da rastgele veri üret
@@ -53,7 +53,7 @@ import os
 os.makedirs("data", exist_ok=True)
 
 # 1 milyon satır x 10 sütunluk rastgele veri (10 MB civarı)
-rows = 1_000_000
+rows = 500.000
 cols = 10
 
 data_gpu = cp.random.rand(rows, cols)
