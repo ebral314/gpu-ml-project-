@@ -32,6 +32,13 @@ Küçük veri setleri için `iris.csv`, büyük veri testleri için ise `synthet
 - `.csv` dosyaları proje içindedir.
 
 ---
-
-
+## 📁 Klasör Yapısı
+gpu-ml-project/
+├── main.py
+├── veri_olustur.py
+├── README.md
+└── data/
+├── iris.csv
+├── synthetic_data.csv
+└── clustered_data.csv
 
