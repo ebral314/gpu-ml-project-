@@ -1,67 +1,37 @@
-# gpu-ml-project-
-proje
 # GPU Destekli Makine Öğrenmesi Projesi
 
-Bu projede, RAPIDS AI kütüphanesi (cuML) kullanılarak GPU üzerinde KMeans algoritması ile kümeleme işlemi gerçekleştirilmiştir. CuPy ile 10 MB'lık rastgele veri üretilmiş ve Polars ile hızlı veri işleme gerçekleştirilmiştir.
+Bu projede, **GPU** ve **CPU** kullanarak veri üretimi, kümeleme (KMeans), sınıflandırma (Random Forest) ve görselleştirme işlemleri gerçekleştirilmiştir.  
+Küçük veri setleri için `iris.csv`, büyük veri testleri için ise `synthetic_data.csv` kullanılmıştır.
+
+---
 
 ## 🚀 Kullanılan Kütüphaneler
 
-- cuml
-- cupy
-- pandas
-- polars
-- matplotlib
-- scikit-learn
+- `cupy`, `cuml` (GPU işlemleri için)
+- `pandas`, `polars`
+- `scikit-learn`
+- `matplotlib`, `seaborn`
 
-## 🧠 Proje Adımları
+---
 
-1. **Veri Üretimi:** CuPy kullanılarak 10 sütun ve 500.000 satırdan oluşan 10 MB'lık sahte veri üretildi.
-2. **Veri Kaydı:** Üretilen veri `.csv` formatında `data/` klasörüne kaydedildi.
-3. **Kümeleme:** cuML içindeki `KMeans` algoritması ile 3 küme oluşturuldu.
-4. **Görselleştirme:** Sonuçlar matplotlib ile görselleştirildi.
-5. **Notebook:** Tüm işlemler `gpu_kmeans.ipynb` dosyasında adım adım açıklandı.
+## 🧠 Proje Aşamaları
+
+### 1. Sahte Veri Üretimi (`veri_olustur.py`)
+- `CuPy` kullanılarak 500.000 satır ve 10 sütunluk rastgele veri üretildi.
+- `pandas` ile `synthetic_data.csv` olarak `data/` klasörüne kaydedildi.
+
+### 2. Modelleme ve Kümeleme (`main.py`)
+- `iris.csv` kullanılarak:
+  - `RandomForestClassifier` ile sınıflandırma yapıldı
+  - `KMeans` ile 3 kümeye ayrıldı
+- Sonuçlar `clustered_data.csv` dosyasına yazıldı
+- Veriler matplotlib ile görselleştirildi
+
+### 3. Alternatifler
+- GPU destekli `cuML` test edildi ancak yerel CUDA desteği olmadığı için CPU ile devam edildi.
+- `.csv` dosyaları proje içindedir.
+
+---
 
 ## 📁 Klasör Yapısı
 
-README.md dosyası eklendi
-
-import cupy as cp
-import pandas as pd
-
-rows = 500_000
-cols = 10
-
-# GPU'da rastgele veri üret
-data_gpu = cp.random.rand(rows, cols)
-
-# CPU'ya çevir
-data_cpu = cp.asnumpy(data_gpu)
-
-# DataFrame oluştur
-df = pd.DataFrame(data_cpu, columns=[f"feature_{i}" for i in range(cols)])
-
-# CSV olarak kaydet
-df.to_csv("data/synthetic_data.csv", index=False)
-
-print("Veri başarıyla oluşturuldu ve kaydedildi!")
-
-import cupy as cp
-import pandas as pd
-import os
-
-# Klasör var mı kontrol et, yoksa oluştur
-os.makedirs("data", exist_ok=True)
-
-# 1 milyon satır x 10 sütunluk rastgele veri (10 MB civarı)
-rows = 500.000
-cols = 10
-
-data_gpu = cp.random.rand(rows, cols)
-data_cpu = cp.asnumpy(data_gpu)
-
-df = pd.DataFrame(data_cpu, columns=[f"feature_{i}" for i in range(cols)])
-df.to_csv("data/synthetic_data.csv", index=False)
-
-print("✅ synthetic_data.csv başarıyla oluşturuldu ve kaydedildi!")
-
-README eklendi, GPU destekli veri oluşturma scripti taşındı.
