@@ -33,5 +33,5 @@ Küçük veri setleri için `iris.csv`, büyük veri testleri için ise `synthet
 
 ---
 
-## 📁 Klasör Yapısı
+
 
