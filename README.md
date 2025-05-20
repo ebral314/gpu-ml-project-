@@ -42,3 +42,7 @@ gpu-ml-project/
 ├── synthetic_data.csv
 └── clustered_data.csv
 
+## 📊 Kaggle Proje Linki
+
+Projeyi Kaggle üzerinde görüntülemek için:  
+👉 [KMeans Kümeleme - Kaggle](https://www.kaggle.com/code/ebralkarabulut/notebook4550284b9e?scriptVersionId=240896526)
